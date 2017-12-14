@@ -36,6 +36,13 @@ const StateController = require('./StateController')
  * @ignore
  */
 const defaultSettingsConfig = {
+  'NODE_ENV': {
+    type: 'string',
+    alias: 'e',
+    default: 'development',
+    describe: 'Deployment environment'
+  },
+
   'host': {
     type: 'string',
     alias: 'h',
@@ -235,12 +242,6 @@ class Application extends AbstractController {
 
   listen (server, { settings }) {
     const { port } = settings
-
-    // Error handler
-    server.use((error, req, res) => {
-      console.error('Internal Server Error', error)
-      res.status(500).send('<pre>Internal Server Error</pre>')
-    })
 
     return server.listen(port, () => console.log(`App listening on port ${port}.`))
   }

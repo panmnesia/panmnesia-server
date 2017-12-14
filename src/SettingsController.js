@@ -70,12 +70,12 @@ class SettingsController extends AbstractController {
       }, {})
 
     yargs
-      .env('HVZ')
+      .env('PAN')
       .version()
       .alias('version', 'v')
       .options(schema.properties)
       .help('help')
-      .epilogue('HvZ Server')
+      .epilogue('Panmnesia Server')
 
     mapping.map(this, yargs.argv)
     mapping.map(this, fileData)
@@ -102,8 +102,6 @@ class SettingsController extends AbstractController {
       req.config = this
       next()
     })
-
-    server.get('/settings', (req, res) => res.status(200).json(this))
   }
 }
 
