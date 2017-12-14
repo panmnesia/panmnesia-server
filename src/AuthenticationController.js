@@ -180,9 +180,8 @@ class Authentication extends AbstractController {
   }
 
   mount (server, { settings }) {
-    server.get('/session', (req, res) => res.status(200).json({ ...req.session, user: req.user }))
     server.get('/login', (req, res) => res.status(200).send(tmpLoginHTML))
-    server.post('/login', this.loginMiddleware, (req, res) => res.status(200).json({ success: true, session: req.session, user: req.user }))
+    server.post('/login', this.loginMiddleware, (req, res) => res.status(200).json({ success: true }))
     server.post('/register', this.registerMiddleware, (req, res) => res.status(200).json({ success: true }))
   }
 }

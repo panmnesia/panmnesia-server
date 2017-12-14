@@ -51,10 +51,6 @@ class StateController extends AbstractController {
       next()
     })
   }
-
-  mount (server) {
-    server.get('/state', (req, res) => res.status(200).json(this.state))
-  }
 }
 
 /**

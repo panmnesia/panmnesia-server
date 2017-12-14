@@ -233,14 +233,14 @@ class Application extends AbstractController {
     server.use(bodyParser.urlencoded({ extended: true }))
   }
 
-  mount (server, { auth }) {
-    // Debug Endpoints
-    server.get('/', (req, res) => res.status(200).json({ foo: 'bar' }))
-    server.get('/authed', auth.authenticated, (req, res) => res.status(200).json({ success: true }))
-  }
-
   listen (server, { settings }) {
     const { port } = settings
+
+    // Error handler
+    server.use((error, req, res) => {
+      console.error('Internal Server Error', error)
+      res.status(500).send('<pre>Internal Server Error</pre>')
+    })
 
     return server.listen(port, () => console.log(`App listening on port ${port}.`))
   }
