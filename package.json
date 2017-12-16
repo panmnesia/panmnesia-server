@@ -1,6 +1,6 @@
 {
   "name": "panmnesia-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple HTTP service for rapid CQRS-style application development using Express, PouchDB and Redux.",
   "main": "src/index.js",
   "scripts": {
