@@ -43,7 +43,7 @@ class CommandController extends AbstractController {
       return next(new Error(`'payload' is required by flux-standard-action`))
     }
 
-    if (typeof payload !== 'object' || payload === null) {
+    if (typeof payload !== 'object') {
       return next(new Error(`'payload' must be an object`))
     }
 
