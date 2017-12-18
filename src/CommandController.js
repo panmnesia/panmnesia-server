@@ -36,21 +36,21 @@ class CommandController extends AbstractController {
     const { type, payload, meta } = body
 
     if (!type) {
-      next(new Error(`'type' is required by flux-standard-action`))
+      return next(new Error(`'type' is required by flux-standard-action`))
     }
 
     if (!payload) {
-      next(new Error(`'payload' is required by flux-standard-action`))
+      return next(new Error(`'payload' is required by flux-standard-action`))
     }
 
     if (typeof payload !== 'object' || payload === null) {
-      next(new Error(`'payload' must be an object`))
+      return next(new Error(`'payload' must be an object`))
     }
 
     const Command = this.typeIndex[type]
 
     if (!Command) {
-      next(new Error(`Invalid type`))
+      return next(new Error(`Invalid type`))
     }
 
     return Command.handle(database, req, res, next)
