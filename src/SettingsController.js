@@ -59,7 +59,9 @@ class SettingsController extends AbstractController {
   refresh () {
     const { schema, mapping, computed = {} } = this
 
-    if(!fs.existsSync(path.join(process.cwd(), '.env'))) fs.writeFileSync(path.join(process.cwd(), '.env'), "", { flag: 'wx' })
+    if(!fs.existsSync(path.join(process.cwd(), '.env'))) {
+      fs.writeFileSync(path.join(process.cwd(), '.env'), "", { flag: 'wx' })
+    }
 
     const fileData = fs.readFileSync(path.join(process.cwd(), '.env'), 'utf8')
       .split('\n')
