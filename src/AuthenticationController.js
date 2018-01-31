@@ -148,7 +148,7 @@ class Authentication extends AbstractController {
           next()
         })
       })
-      .catch(error => next(error))
+      .catch(error => res.status(400).json({ error }))
     }
   }
 
