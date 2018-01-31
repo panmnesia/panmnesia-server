@@ -114,6 +114,13 @@ class Authentication extends AbstractController {
     return passport.authenticate('local')
   }
 
+  get logoutMiddleware () {
+    return (req, res, next) => {
+      req.logout()
+      next()
+    }
+  }
+
   get registerMiddleware () {
     return (req, res, next) => {
       const { rounds: saltRounds } = this
@@ -182,6 +189,7 @@ class Authentication extends AbstractController {
   mount (server, { settings }) {
     server.get('/login', (req, res) => res.status(200).send(tmpLoginHTML))
     server.post('/login', this.loginMiddleware, (req, res) => res.status(200).json({ success: true }))
+    server.get('/logout', this.logoutMiddleware, (req, res) => res.status(200).json({ success: true }))
     server.post('/register', this.registerMiddleware, (req, res) => res.status(200).json({ success: true }))
   }
 }
